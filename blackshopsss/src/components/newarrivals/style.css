@@ -6,7 +6,12 @@
 .newarrivals h4{
     font-weight: 400;
 }
-
+.content{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 30px;
+    overflow-y: hidden;
+}
 .newarrivals span {
     color: #e94560;
     font-size: 15px;

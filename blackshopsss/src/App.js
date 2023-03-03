@@ -5,10 +5,10 @@ import {
   BrowserRouter as Router, Routes, Route
 } from "react-router-dom";
 import Pages from './pages/Pages';
-// import Data from './components/Data';
-// import { useState } from 'react';
+
 import { CartProvider } from './context/CartContext';
 import Cart from './pages/cart/Cart';
+import Shopping from './pages/shopping/Shopping';
 
 
 function App() {
@@ -25,6 +25,9 @@ function App() {
             <Route path="/" exact
               element=
               { <Pages /> }>
+            </Route>
+            <Route path="/shop" exact 
+            element = {<Shopping/>}>
             </Route>
             <Route path="/cart" exact
               element=

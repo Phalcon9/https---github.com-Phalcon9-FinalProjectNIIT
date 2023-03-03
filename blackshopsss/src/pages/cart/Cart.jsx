@@ -8,14 +8,14 @@ const Cart = () => {
    
     return ( 
         <>
-                <section className="cart-items">
+                <section className="cart-items" >
                     <div className="container d_flex">
                         <div className="cart-details">
                             {items.length === 0 && <h1 className="no-items product">No Items are in cart</h1>}
                             {items.map((item) => {
                                 const productQty = item.price * item.qty
                                 return (
-                                    <div className="cart-list product d_flex">
+                                    <div className="cart-list product d_flex" key={item.id}>
                                         <div className="img">
                                             <img src={item.cover}/>
                                         </div>
@@ -48,7 +48,7 @@ const Cart = () => {
 
                                 )
                             } )}
-                            <div className="cart-total product po">
+                            <div className="cart-total product po ">
                                 <h2>Cart Summary</h2>
                                 <div className="d_flex">
                                     <h4>Total price: </h4>

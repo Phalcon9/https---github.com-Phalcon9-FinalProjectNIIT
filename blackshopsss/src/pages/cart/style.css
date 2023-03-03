@@ -99,3 +99,12 @@
     top:0px;
     left: 1000px;
   }
+
+  @media(max-width: 768px) {
+    .cart-total{
+    /* position: absolute;
+    justify-self: center;
+      */
+      width: 100%;
+    }
+  }

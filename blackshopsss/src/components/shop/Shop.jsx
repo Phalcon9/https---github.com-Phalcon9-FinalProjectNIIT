@@ -1,5 +1,6 @@
 import Catg from "./Catg";
 import ShopCart from "./ShopCart";
+import { Link } from "react-router-dom"
 
 const Shop = () => {
     return (
@@ -14,7 +15,7 @@ const Shop = () => {
                                 <h2>Mobile Phones</h2>
                             </div>
                             <div className="heading-right row">
-                                <span>View all</span>
+                            <span><Link to='/shop'>View All</Link></span>
                                 <i className="fa fa-caret-right"></i>
                             </div>
                         </div>

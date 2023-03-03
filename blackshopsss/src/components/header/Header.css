@@ -134,6 +134,7 @@ header ul li a:hover {
 @media(max-width: 768px) {
     .head{
         display: none;
+        width: 100%;
     }
     header ul {
         padding-top: 30px;

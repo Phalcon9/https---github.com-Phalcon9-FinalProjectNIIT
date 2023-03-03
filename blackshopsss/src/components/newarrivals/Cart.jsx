@@ -3,7 +3,7 @@ import Ndata from "./NdData";
 const Carts = () => {
     return (
         <>
-            <div className="content grid product">
+            <div className="content product">
                 {
                     Ndata.map((vale, index) =>{
                         return(

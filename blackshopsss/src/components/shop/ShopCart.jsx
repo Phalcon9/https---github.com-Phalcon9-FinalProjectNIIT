@@ -7,7 +7,7 @@ const ShopCart = () => {
     const{shopItems} = Sdata;
     
     const {addToCart}= useContext(CartContext)
-    
+    console.table(shopItems)
     const settings = {
         dots: false,
         infinite: true,
@@ -48,7 +48,7 @@ const ShopCart = () => {
             shopItems.map((shopItems) =>{
                    
            return(
-            <div className="box">
+            <div className="box mob" key={shopItems.id}>
                 <div className="product mtop">
                     <div className="img1">
                         <span className="discount">{shopItems.discount}% Off</span>
@@ -57,6 +57,7 @@ const ShopCart = () => {
                     <div className="product-details">
                         <h3>{shopItems.name}</h3>
                         <div className="price">
+                          
                             <h4>{shopItems.price}.00</h4>
                             <button
                              onClick={() => addToCart(shopItems)}

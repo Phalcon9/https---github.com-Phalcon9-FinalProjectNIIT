@@ -1,0 +1,11 @@
+.box-container{
+    
+    display: inline;
+    flex-wrap: wrap;
+    width: 30%;
+    background-color: red;
+}
+.box-item{
+    float: left;
+    flex: 1 1 100px;
+}

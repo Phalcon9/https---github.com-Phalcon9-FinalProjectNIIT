@@ -1,5 +1,6 @@
 import TopCart from "./TopCart";
 import './style.css'
+import { Link } from "react-router-dom"
 
 const TopCate = () => {
     return (
@@ -12,7 +13,7 @@ const TopCate = () => {
                             <h2>Top Categories</h2>
                         </div>
                         <div className="heading-right row">
-                            <span>View All</span>
+                            <span>   <Link to='/shop'>View All</Link></span>
                             <i className="fa fa-caret-right"></i>
                         </div>
                     </div>

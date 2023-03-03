@@ -24,13 +24,13 @@ const Navbar = () => {
                             </li> */}
                             {/* <li>
                                 <Link to='/user'>User Account</Link>
-                            </li>
-                            <li>
-                                <Link to='/vendor'>vendor account</Link>
                             </li> */}
                             <li>
-                                <Link to='/track'>track my order</Link>
+                                <Link to='/shop'>Shop</Link>
                             </li>
+                            {/* <li>
+                                <Link to='/track'>track my order</Link>
+                            </li> */}
                             <li>
                                 <Link to='/contact'>contact</Link>
                             </li>
@@ -38,8 +38,10 @@ const Navbar = () => {
                         <button className="toggle" onClick={() => setMobileMenu(!MobileMenu)}>
                             {
                                 MobileMenu ? 
+                                
                                 <i className="fas fa-times close home-bth"></i> :
-                                <i className="fa-solid fa-bars open"></i>
+                                <i className="fa fa-bars open"></i>
+                                // fa fa-bars
                             }
                         </button>
                     </div>

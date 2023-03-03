@@ -1,4 +1,5 @@
 import FlashDeals from "../components/flashDeals/FlashDeal";
+import Footer from "../components/footer/Footer";
 import NewArrivals from "../components/newarrivals/NewArrivals";
 import Shop from "../components/shop/Shop";
 import TopCate from "../components/top/TopCate";
@@ -12,6 +13,8 @@ const Pages = () => {
             <TopCate />
             <NewArrivals/>
             <Shop/>
+            <Footer/>
+            
         </>
     );
 }

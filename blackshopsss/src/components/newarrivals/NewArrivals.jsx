@@ -1,6 +1,6 @@
 import Carts from "./Cart";
 import './style.css'
-
+import { Link } from "react-router-dom"
 const NewArrivals = () => {
     return (
         <>
@@ -12,7 +12,7 @@ const NewArrivals = () => {
                             <h2>New Arrivals</h2>
                         </div>
                         <div className="heading-right row">
-                            <span>View all</span>
+                        <span><Link to='/shop'>View All</Link></span>
                             <i className="fa fa-caret-right"></i>
                         </div>
                     </div>
