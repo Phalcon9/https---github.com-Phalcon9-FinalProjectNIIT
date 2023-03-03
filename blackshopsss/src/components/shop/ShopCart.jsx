@@ -7,7 +7,7 @@ const ShopCart = () => {
     const{shopItems} = Sdata;
     
     const {addToCart}= useContext(CartContext)
-    console.table(shopItems)
+    // console.table(shopItems)
     const settings = {
         dots: false,
         infinite: true,

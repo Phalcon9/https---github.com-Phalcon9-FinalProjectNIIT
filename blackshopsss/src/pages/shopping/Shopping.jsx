@@ -1,28 +1,27 @@
 import { useContext } from "react";
-import Data from "../../components/Data";
+// import Data from "../../components/Data";
 import CartContext from "../../context/CartContext";
 import "./style.css"
 const Shopping = () => {
 
-    const { productItems } = Data
-    const { addToCart } = useContext(CartContext)
+    const { addToCart, products } = useContext(CartContext)
     return (
         <>
             {
-                productItems.map((productItems) => {
+                products.map((product) => {
                     return (
-                        <div className="box-container box" key={productItems.id}>
+                        <div className="box-container box" key={product.id}>
                             <div className="product mtop box-item">
                                 <div className="img">
-                                    <span className="discount">{productItems.discount}% Off</span>
-                                    <img src={productItems.cover} alt="" />
+                                    <span className="discount">{product.discount}% Off</span>
+                                    <img src={product.cover} alt="" />
                                 </div>
                                 <div className="product-details">
-                                    <h3>{productItems.name}</h3>
+                                    <h3>{product.name}</h3>
                                     <div className="price">
-                                        <h4>{productItems.price}.00</h4>
+                                        <h4>{product.price}.00</h4>
                                         <button className="btn"
-                                            onClick={() => addToCart(productItems)}
+                                            onClick={() => addToCart(product)}
                                         >
                                             <i className="fa fa-plus"></i>
                                         </button>
