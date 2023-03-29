@@ -11,7 +11,7 @@ const { request } = require('express')
 
 // get all products
 const allProducts = async (req, res) => {
-    const products = await Product.find({}).populate("category")
+    const products = await Product.find({})
     // const 
     res.status(200).json(products)
 } 
@@ -37,17 +37,17 @@ const getProduct = async (req, res) => {
 //create new product
 const addProduct = async (req, res) => {
     console.log(req.body);
-    const { name, discount, price, subCategory, brand, quantity } = req.body
-    console.log(category);
+    const { name, discount, price, subCategory, brand, quantity, discription } = req.body
+    // console.log(category);
     const cover = req.file.path  
     try {
-        const product = await  Product.create({ name, discount, cover, price, subCategory, brand, quantity })
+        const product = await  Product.create({ name, discount, cover, price, subCategory, brand, quantity, discription })
         product.save().then((product) => {
             SubCategory.findByIdAndUpdate(subCategory, {
               $push: { product: product }      
             }).then(() => console.log('Product added to category'));
         
-          }); 
+          });  
         res.status(200).json(product)
     } 
     catch (error) {
@@ -65,7 +65,7 @@ const deleteProduct = async (req, res) => {
     const product = await Product.findOneAndDelete({ _id: id })
     if (!product) {
         return res.status(404).json({ error: 'Product not found' })
-    }
+    } 
 
     res.status(200).json(product)
 }

@@ -34,6 +34,10 @@ const productSchema = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'SubCategory',
         required: true
+    },
+    discription:{
+        type: String,
+        required:true
     }
 
 }, { timestamps: true })

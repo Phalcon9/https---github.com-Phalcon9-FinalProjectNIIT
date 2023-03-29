@@ -23,7 +23,10 @@ const ProductForm = () => {
     const [cover, setCover] = useState('')
     const [price, setPrice] = useState('')
     // const [category, setProductCategory] = useState('')
+    const [brand, setBrand] = useState('')
+    const [quantity, setQuantity] = useState('')
     const [select, setSelect] = useState('')
+    const [discription, setDiscription] = useState('')
 
     const {data} = useQuery('categories', getCategories)
 
@@ -39,8 +42,11 @@ const ProductForm = () => {
         formData.append('cover', cover)
         formData.append('price', price)
         formData.append('subCategory', select)
+        formData.append('brand', brand)
+        formData.append('quantity', quantity)
+        formData.append('discription', discription)
         try {
-            const post = await axios.post(url, formData, { name: name, discount: discount, cover: cover, price: price, subCategory: select })
+            const post = await axios.post(url, formData, { name: name, discount: discount, cover: cover, price: price, subCategory: select, quantity:quantity, brand:brand, discription:discription })
            
             // console.log(post.data);    
             console.log("uploaded");
@@ -55,7 +61,7 @@ const ProductForm = () => {
     return (<>
         <div className="flex ">
             <SideNav />
-            <form className="addProduct w-[50%] mx-auto h-[400px] mt-[200px] px-[20px] bg-blue-500 flex flex-col gap-3" onSubmit={handleSubmit} method="post"  encType="multipart/form-data">
+            <form className="addProduct w-[50%] mx-auto h-[700px] mt-[200px] px-[20px] bg-blue-500 flex flex-col gap-3" onSubmit={handleSubmit} method="post"  encType="multipart/form-data">
                 <h3>Add product</h3>
                 <label >Product Name</label>
                 <input
@@ -82,6 +88,18 @@ const ProductForm = () => {
                     value={discount}
 
                 />
+                <label >Brand</label>
+                <input 
+                    type="text"
+                    onChange={(e) => setBrand(e.target.value)}
+                    value={brand} 
+                />
+                <label >Quantity</label>
+                <input 
+                    type="number"
+                    onChange={(e) => setQuantity(e.target.value)}
+                    value={quantity}     
+                />
                 {/* <label >Product Image</label> */}
                 <input
                     type="file"
@@ -99,6 +117,8 @@ const ProductForm = () => {
                     onChange={(e) => setPrice(e.target.value)}
                     value={price}
                 />
+                <label >Discription</label>
+                <textarea  cols="30" rows="10" onChange={(e) => setDiscription(e.target.value)} value={discription}></textarea>
                 <button >Submit</button>
             </form>
         </div>

@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 const Categories = () => {
   //getting categories
   const [categories, setCategories] = useState([])
-  const [isClicked, setIsClicked] = useState('')
+  // const [isClicked, setIsClicked] = useState('')
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
