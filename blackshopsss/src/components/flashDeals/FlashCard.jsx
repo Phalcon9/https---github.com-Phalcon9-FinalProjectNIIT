@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import Slider from "react-slick";
 import CartContext from "../../context/CartContext";
 // import Data from "../Data";
@@ -31,34 +30,8 @@ const PrevArrow = (props) => {
 const FlashCard = () => {
     // const { productItems } = Data;
 
-    const { addToCart, products } = useContext(CartContext)
+    const { addToCart,  products } = useContext(CartContext)
 
-    // const [products, setProducts] = useState(null)
-
-//Get product from api
-    // useEffect(() => {
-    //     const fetchProducts = async () => {
-    //         // try {
-                
-    
-    //         //     if (response.ok) {
-    //         //         setProducts(response.data)
-    //         //         console.log(response.data);
-    //         //     }
-    //         // } catch (error) {
-    //         //     console.table(error)
-    //         // }
-    //        axios.get('http://localhost:4000/api/products/')
-    //        .then(res =>{
-    //             setProducts(res.data)
-    //        }).catch(err => {
-    //             console.log(err);
-    //        })
-    //     }
-
-    //     fetchProducts()
-
-    // }, [])
 
 
     const settings = {
@@ -99,30 +72,35 @@ const FlashCard = () => {
     };
     return (
         <>
-            {/* <div>
-                {products && products.map((product) => (
-                    <p key={products._id}>{product.name}</p>
-                ))
-
-                }
-            </div> */}
+           
             <Slider {...settings}>
 
 
                 {products && products.map((product) => (
+                    
                     <div className="box" key={product._id}>
+                        {/* {console.log(product)} */}
                         <div className="product mtop">
                             <div className="img">
                                 <span className="discount">{product.discount}% Off</span>
-                                <img src={product.cover} alt="" />
+                                <img src={`http://localhost:4000/${product.cover}`} alt="" />
                             </div>
                             <div className="product-details">
                                 <h3>{product.name}</h3>
                                 <div className="price">
-                                    <h4>{product.price}.00</h4>
+                                    {/* <h4>{product.price}.00</h4> */}
+                                    {
+                                        product.category &&(
+                                            <div>{product.category.productCategory}</div>
+                                        )
+                                    }
+                                    {/* <h4>{product.category}</h4> */}
+                                    {/* {console.log(product.category)} */}
+                                    
+                                    {/* console.log(product.category.productCategory); */}
                                     <button className="btn"
                                         onClick={() => addToCart(product)}
-                                    >
+                                    >      
                                         <i className="fa fa-plus"></i>
                                     </button>
                                 </div>

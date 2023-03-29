@@ -1,14 +1,20 @@
 const Product = require('../models/productModel')
-const multer = require('multer')
+
 const mongoose = require('mongoose')
+const Category = require('../models/categoryModel')
+const SubCategory = require('../models/subCategoryModel')
+const multer = require('multer')
+const { request } = require('express')
+// const upload = multer({ dest: 'uploads/' })
+
 
 
 // get all products
 const allProducts = async (req, res) => {
-    const products = await Product.find({}).sort({ createdAt: -1 })
-
+    const products = await Product.find({}).populate("category")
+    // const 
     res.status(200).json(products)
-}
+} 
 
 // get single product
 const getProduct = async (req, res) => {
@@ -23,50 +29,32 @@ const getProduct = async (req, res) => {
     if (!product) {
         return res.status(404).json({ error: 'Product not found' })
     }
-    console.log("ccc"); 
+    console.log("ccc");
     res.status(200).json(product)
 }
-// const Storage = multer.diskStorage({
-//     destination: "uploads",
-//     filename: (req, file, cb) => {
-//         cb(null, file.originalname)
-//     }
-// })
-// const upload = multer({
-//     storage: Storage 
-// }).single('testImage')
+
 
 //create new product
 const addProduct = async (req, res) => {
-    // upload(req, res, (err) => {
-    //     if (err) {
-    //         console.log(err);
-    //     } else {
-    //         const newProduct = new Product({ 
-    //             name,
-    //             discount,
-    //             cover:{           
-    //                 data:req.file.filename, 
-    //                 contentType:'image/png'
-    //             }
-    //         })
-    //         newProduct.save().then(()=> res.send('uploaded'))
-    //         
-    //     } 
-    // })     
-            
-const { name, discount, cover, price } = req.body
-    // add document to DB
+    console.log(req.body);
+    const { name, discount, price, subCategory, brand, quantity } = req.body
+    console.log(category);
+    const cover = req.file.path  
     try {
-        const product = await Product.create({ name, discount, cover, price })
-       
-        res.status(200).json(product) 
-    }
+        const product = await  Product.create({ name, discount, cover, price, subCategory, brand, quantity })
+        product.save().then((product) => {
+            SubCategory.findByIdAndUpdate(subCategory, {
+              $push: { product: product }      
+            }).then(() => console.log('Product added to category'));
+        
+          }); 
+        res.status(200).json(product)
+    } 
     catch (error) {
-        res.status(400).json({ error: error.message })
+        res.status(400).json({ error: error.message }) 
     }
 }
-// delete product
+// delete product 
 const deleteProduct = async (req, res) => {
     const { id } = req.params
 

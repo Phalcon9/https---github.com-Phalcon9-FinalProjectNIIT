@@ -17,7 +17,8 @@ const Cart = () => {
                                 return (
                                     <div className="cart-list product d_flex" key={item.id}>
                                         <div className="img">
-                                            <img src={item.cover}/>
+                                            {/* <img src={item.cover}/> */}
+                                            <img src={`http://localhost:4000/${item.cover}`} alt="" />
                                         </div>
                                         <div>
                                             <h3>{item.name}</h3>
