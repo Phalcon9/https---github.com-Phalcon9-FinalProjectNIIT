@@ -6,8 +6,8 @@ import "./Header.css"
 const Header = () => {
     return ( 
         <>
-            <Head/>
-            <Search/>
+            {/* <Head/> */}
+            {/* <Search/> */}
             <Navbar/>
         </>
      );

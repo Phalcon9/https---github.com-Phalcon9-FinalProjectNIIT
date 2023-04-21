@@ -1,5 +1,6 @@
 const SubCategory = require('../models/subCategoryModel')
 const Category = require('../models/categoryModel')
+const Product = require('../models/productModel')
 const mongoose = require('mongoose')
 
 const allSubCategory = async (req, res) => {
@@ -23,4 +24,31 @@ const addSubCategory = async (req, res) => {
     }
 
 } 
-module.exports = {allSubCategory, addSubCategory}
+
+const getProductsByCategory = async (req, res) => {
+  const { id } = req.params
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({ error: 'Product not found' })
+  }
+
+  const subcategory = await SubCategory.findById(id)
+  if (!subcategory) {
+    return res.status(404).json({ error: 'Product not found' })
+}
+console.log("ccc");
+res.status(200).json(subcategory)  
+ 
+    // Product.find({ subCategory: req.params.id })
+    //   .then(products => {
+    //     res.status(200).json(products);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //     res.status(500).json({
+    //       error: err
+    //     });
+    //   }); 
+   
+  };
+module.exports = {allSubCategory, addSubCategory, getProductsByCategory} 

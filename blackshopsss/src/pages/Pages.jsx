@@ -8,11 +8,11 @@ import Home from "../landingPage/Home";
 const Pages = () => {
     return (
         <>
-            <Home />
+            {/* <Home /> */}
             <FlashDeals />
-            <TopCate />
+            {/* <TopCate />
             <NewArrivals/>
-            <Shop/>
+            <Shop/> */}
             <Footer/>
             
         </>

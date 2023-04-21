@@ -15,7 +15,7 @@ const NextArrow = (props) => {
     )
 }
 
-const url = "http://localhost:4000/api/products/"
+// const url = "http://localhost:4000/api/products/"
 const PrevArrow = (props) => {
     const { onClick } = props
     return (
@@ -30,86 +30,51 @@ const PrevArrow = (props) => {
 const FlashCard = () => {
     // const { productItems } = Data;
 
-    const { addToCart,  products } = useContext(CartContext)
+    const {  products } = useContext(CartContext)
 
 
 
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
 
-        responsive: [
-            {
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1
-                }
-            }
-        ],
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />
-    };
     return (
         <>
-           
-            <Slider {...settings}>
 
 
+            <section className="w-screen h-[50%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 justify-self-stretch max-sm:grid-cols-2 max-md:grid-cols-2 sm:grid-cols-2 gap-x-[5px] gap-y-[5px] ">
                 {products && products.map((product) => (
-                    
-                    <div className="box" key={product._id}>
-                        {/* {console.log(product)} */}
-                        <div className="product mtop">
-                            <div className="img">
-                                <span className="discount">{product.discount}% Off</span>
-                                <img src={`http://localhost:4000/${product.cover}`} alt="" />
+
+                    <div className="w-[100%] justify-self-auto" key={product._id}>
+                        <div className="">
+                            <div className="bg-[#f6f6f6]">
+                                <img className="object-contain h-[300px] block mx-auto w-[70%]"  src={`http://localhost:4000/${product.cover}`} alt="" />
                             </div>
-                            <div className="product-details">
-                                <h3>{product.name}</h3>
-                                <div className="price">
-                                    {/* <h4>{product.price}.00</h4> */}
-                                    {
-                                        product.category &&(
-                                            <div>{product.category.productCategory}</div>
-                                        )
-                                    }
-                                    {/* <h4>{product.category}</h4> */}
-                                    {/* {console.log(product.category)} */}
-                                    
-                                    {/* console.log(product.category.productCategory); */}
-                                    <button className="btn"
-                                        onClick={() => addToCart(product)}
-                                    >      
-                                        <i className="fa fa-plus"></i>
-                                    </button>
-                                </div>
+                            <div className="ml-[10px]">
+                                <h6>{product.name}</h6>
+                                <h6>{product.subCategory}</h6>
+                                <h6>${product.price}</h6>
                             </div>
+                            {/* <span className="">{product.discount}% Off</span> */}
+                            {/* <div className="">
+                            <h3>{product.name}</h3>
+                            <div className="">
+                                {
+                                    product.category &&(
+                                        <div>{product.category.productCategory}</div>
+                                    )
+                                }
+                                <button className=""
+                                    onClick={() => addToCart(product)}
+                                >      
+                                    <i className="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div> */}
                         </div>
                     </div>
                 ))
                 }
-            </Slider>
+
+            </section>
+
         </>
     );
 }

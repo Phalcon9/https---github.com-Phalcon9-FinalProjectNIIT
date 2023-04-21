@@ -6,13 +6,13 @@ const Home = () => {
     return ( 
         <>
             <section className="home">
-                <div className="container d_flex">
+                <div className="">
                     <Categories/>
-                    <Slider/>
+                    {/* <Slider/> */}
                 </div>
             </section>
         </>
      );
 }
  
-export default Home;
+export default Home; 

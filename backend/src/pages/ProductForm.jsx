@@ -105,7 +105,6 @@ const ProductForm = () => {
                     type="file"
                     onChange={(e) => setCover(e.target.files[0])}
                     // value={cover}
-
                     accept=".jpeg, .png, .jpg"
                     className="h-[30px] inline-block"
                     label="Image"

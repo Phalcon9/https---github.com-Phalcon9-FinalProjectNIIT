@@ -1,11 +1,12 @@
 const Category = require('../models/categoryModel')
 const Product = require('../models/productModel')
+const SubCategory = require('../models/subCategoryModel')
 
 const mongoose = require('mongoose')
 
 
 const allCategory = async (req, res) => {
-    const category = await Category.find({}).sort({ createdAt: -1 })
+    const category = await Category.find({}).sort({ createdAt: -1 }).populate("subCategory")
     res.status(200).json(category)
 } 
 const getCategory = async (req, res) => {
@@ -15,7 +16,7 @@ const getCategory = async (req, res) => {
         return res.status(404).json({ error: 'Product not found' })
     }
 
-    const category = await Category.findById(id).populate('Product')
+    const category = await Category.findById(id)
 
     if (!category) {
         return res.status(404).json({ error: 'Product not found' })
@@ -24,12 +25,12 @@ const getCategory = async (req, res) => {
     res.status(200).json(category)  
 }
 
-const getProductsByCategory = (req, res) => {
-    Product.find({ category: req.params.id })
-      .then(products => {
-        res.status(200).json(products);
+const getSubCategoryByCategory = (req, res) => {
+    SubCategory.find({ category: req.params.id }).populate('product')
+      .then(subCategory => {
+        res.status(200).json(subCategory);
       })
-      .catch(err => {
+      .catch(err => { 
         console.log(err);
         res.status(500).json({
           error: err
@@ -84,4 +85,4 @@ const addCategory = async (req, res) =>{
     }
 }
 
-module.exports = {addCategory, allCategory, updateCategory, updateCategoryWithProducts, getCategory, getProductsByCategory}
+module.exports = {addCategory, allCategory, updateCategory, updateCategoryWithProducts, getCategory,getSubCategoryByCategory}

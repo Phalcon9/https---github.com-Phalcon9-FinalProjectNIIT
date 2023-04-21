@@ -20,8 +20,8 @@ const SideNav = () => {
     return (<>
         <section className="flex gap-6 ">
 
-            <div className="bg-[#2B3467] min-h-screen w-[250px] text-gray-400 pl-2">
-                <span className="py-3 flex justify-end">
+            <div className="bg-[#2B3467] min-h-screen w-[250px] text-gray-400 pl-2 ">
+                <span className="py-3 flex justify-end ">
                     <HiMenuAlt3 />
                     {/* <IoHomeOutline size={26} className="cursor-pointer" /> */}
                 </span>
