@@ -9,6 +9,7 @@ import Pages from './pages/Pages';
 import { CartProvider } from './context/CartContext';
 import Cart from './pages/cart/Cart';
 import Shopping from './pages/shopping/Shopping';
+import Men from './pages/men/Men';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
               element=
               { <Cart />}>
             </Route>
+            <Route path='/men' exact element={<Men/>}></Route>
           </Routes>
         </Router>
       </CartProvider>

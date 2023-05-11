@@ -29,27 +29,22 @@ const PrevArrow = (props) => {
 
 const FlashCard = () => {
     // const { productItems } = Data;
-
     const {  products } = useContext(CartContext)
-
-
-
-
     return (
         <>
 
 
-            <section className="w-screen h-[50%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 justify-self-stretch max-sm:grid-cols-2 max-md:grid-cols-2 sm:grid-cols-2 gap-x-[5px] gap-y-[5px] ">
+            <section className="w-[80vw]  h-[65%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 justify-self-stretch max-sm:grid-cols-2 max-md:grid-cols-2 sm:grid-cols-2 gap-x-[12px] gap-y-[5px] ">
                 {products && products.map((product) => (
 
-                    <div className="w-[100%] justify-self-auto" key={product._id}>
+                    <div className="w-[100%] h-[100%] justify-self-auto" key={product._id}>
                         <div className="">
-                            <div className="bg-[#f6f6f6]">
-                                <img className="object-contain h-[300px] block mx-auto w-[70%]"  src={`http://localhost:4000/${product.cover}`} alt="" />
+                            <div className="bg-[#f6f6f6] h-[0%]  ">
+                                <img className="object-contain h-[400px] block mx-auto w-[300px]"  src={`http://localhost:4000/${product.cover}`} alt="" />
                             </div>
                             <div className="ml-[10px]">
                                 <h6>{product.name}</h6>
-                                <h6>{product.subCategory}</h6>
+                                {/* <h6>{product.subCategory}</h6> */}
                                 <h6>${product.price}</h6>
                             </div>
                             {/* <span className="">{product.discount}% Off</span> */}
