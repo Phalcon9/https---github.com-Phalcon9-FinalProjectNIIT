@@ -190,7 +190,13 @@ header ul li a:hover {
     } 
     
 } */
+.toggle{
+    display: none;
+}
 @media(max-width: 768px) {
+    .toggle{
+        display: contents;
+    }
     .head{
         display: none;
         width: 100%;

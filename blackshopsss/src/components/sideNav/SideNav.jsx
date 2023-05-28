@@ -1,20 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const SideNav = ({ handleCategoryChange, handleGenderChange, onFilter, selectedCategories, selectedGenders }) => {
+const SideNav = ({ handleCategoryChange, handleGenderChange, onFilter, selectedCategories, selectedGenders, handleCategoryClick }) => {
     const [genders, setGender] = useState([])
     const [categories, setCategory] = useState([])
-    // const [selectedGenders, setSelectedGenders] = useState([]);
-    // const [selectedCategories, setSelectedCategories] = useState([]);
-    // const handleGenderChange = (e) => {
-    //     onGender(e.target.value)
-    // }
-
 
     useEffect(() => {
         const getCategory = async () => {
             try {
-                const response = await axios.get('http://localhost:4000/api/category')
+                const response = await axios.get('http://localhost:4000/api/subCategory')
                 setCategory(response.data);
                 console.log(response.data);
             } catch (error) {
@@ -32,9 +26,8 @@ const SideNav = ({ handleCategoryChange, handleGenderChange, onFilter, selectedC
         }
         getCategory()
         getGender()
-        // handleFilter()
-    }, [])
 
+    }, [])
 
     const handleFilter = () => {
         onFilter(categories, genders);
@@ -47,8 +40,20 @@ const SideNav = ({ handleCategoryChange, handleGenderChange, onFilter, selectedC
             <div>
                 {
                     categories && categories.map(category => (
-                        <div>
-                            <button value={category._id}>{category.productCategory}</button>
+                        <div key={category._id}>
+                            <button
+                                key={category._id}
+                                onClick={() => handleCategoryClick(category._id)}
+                                className={`category-button ${selectedCategories.includes(category._id) ? 'selected underline underline-offset-1' : ''}`}
+                            >
+                                {category.innerCategory}
+                            </button>
+                            {/* <button value={category._id} >{category.productCategory}</button> */}
+                            {/* <label >
+                                <input type="checkbox" value={category._id} onChange={handleCategoryChange} checked={selectedCategories.includes(category._id)} />
+                                {category.innerCategory}
+                            </label> */}
+
                         </div>
                     ))
                 }
@@ -59,14 +64,13 @@ const SideNav = ({ handleCategoryChange, handleGenderChange, onFilter, selectedC
             <div>
                 {
                     genders && genders.map(gender => (
-                        <label className="block">
+                        <label className="block" key={gender._id}>
                             <input type="checkbox" value={gender._id} onChange={handleGenderChange} checked={selectedGenders.includes(gender._id)} />
                             {gender.gender}
                         </label>
                     ))
                 }
             </div>
-            {/* <button onClick={handleFilter}>Filter</button> */}
         </div>
     </>);
 }

@@ -6,45 +6,23 @@ import "./Home.css"
 import axios from "axios";
 
 const Home = () => {
-  // const [products, setProducts] = useState([])
-  // const [genders, setGender] = useState([])
-  // const [filteredProducts, setFilteredProducts] = useState([]);
+ 
   const [selectedGenders, setSelectedGenders] = useState('');
   const [selectedCategories, setSelectedCategories] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [allProducts, setAllProducts] = useState([]);
-  // const [selectedGender, setSelectedGender] = useState([])
-
-  // const handleGenderChange = (selectedGender) => {
-  //   setSelectedGender(selectedGender)
-  // }
-
-
-  // const fetchProductsByGender = async (id) => {
-  //   try {
-  //     const response = await axios.get(`http://localhost:4000/api/gender/${id}/productGender`)
-  //     return response.data
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-
-  // }
-
-
 
   useEffect(() => {
-    handleFilterProducts();
-  }, []);
- 
-  const handleFilterProducts = (selectedGenders) => {
-    // Make a GET request to the backend API to fetch filtered products
+    handleFilterProducts(selectedGenders, selectedCategories);
+  }, [selectedGenders, selectedCategories]);
+
+  const handleFilterProducts = ( selectedGenders ,selectedCategories) => {
     axios.get('http://localhost:4000/api/products/productGender/'
-    , {
-      params: {
-        gender: selectedGenders,
-        subCategory: selectedCategories,
-      },
-    }
+      , {
+        params: {
+          gender: selectedGenders,
+          subCategory: selectedCategories,
+        },
+      }
     )
       .then((response) => {
         setFilteredProducts(response.data);
@@ -53,45 +31,51 @@ const Home = () => {
         console.error(error);
       });
   };
+
   const handleGenderChange = (event) => {
     const genderId = event.target.value;
     const isChecked = event.target.checked;
-  
+
     setSelectedGenders((prevSelectedGenders) => {
       let updatedSelectedGenders;
-  
+
       if (isChecked) {
         updatedSelectedGenders = [...prevSelectedGenders, genderId];
       } else {
         updatedSelectedGenders = prevSelectedGenders.filter((id) => id !== genderId);
       }
-  
-      handleFilterProducts(updatedSelectedGenders);
+
+      handleFilterProducts( selectedCategories,updatedSelectedGenders);
       return updatedSelectedGenders;
     });
   };
 
-  const handleCategoryChange = (event) => {
-    const categoryId = event.target.value;
-    if (event.target.checked) {
-      setSelectedCategories([...selectedCategories, categoryId]);
-    } else {
-      setSelectedCategories(selectedCategories.filter((id) => id !== categoryId));
-    }
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategories([categoryId]);
 
-    handleFilterProducts();
+    setSelectedCategories((prevSelectedCategories) => {
+      const isSelected = prevSelectedCategories.includes(categoryId);
+
+      if (isSelected) {
+        return prevSelectedCategories;
+      }
+  
+      const updatedSelectedCategories = [...prevSelectedCategories, categoryId];
+
+      handleFilterProducts([categoryId], selectedGenders)
+      return updatedSelectedCategories;
+    });
   };
 
- 
   return (
     <>
-      <section className="flex flex-row">
-        <SideNav className="basis-4"
+      <section className="flex gap-6">
+        <SideNav className=""
           onFilter={handleFilterProducts}
           handleGenderChange={handleGenderChange}
-          handleCategoryChange={handleCategoryChange}
           selectedGenders={selectedGenders}
-          selectedCategories= {selectedCategories}
+          selectedCategories={selectedCategories}
+          handleCategoryClick={handleCategoryClick}
         />
         <FlashCard products={filteredProducts}
         />

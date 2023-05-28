@@ -7,7 +7,7 @@ const Navbar = () => {
 
     return (
         <>
-            <header className="bg-gray-200 h-[200px] w-[100%] ">
+            <header className="bg-gray-200 h-[200px] w-[100%] "> aaa
                 <div className="">
                     <div className="relative top-[70px] my-auto">
                         <div className="navlink bg-gray-50 h-[50px] pt-[4px]">
@@ -31,11 +31,6 @@ const Navbar = () => {
                                     </li>
                                 </span>
                             </ul>
-                            {/* <span className="">
-                                <input className=" bg-gray-200 rounded-full md:w-[300px] ring-2 ring-transparent h-[30px] max-sm:mx-[auto] max-sm:mt-[-20px] max-sm:w-[40%] max-sm:block max-sm:bg-red-900 " type='text' placeholder="Search and hit enter" />
-                            </span> */}
-
-
                         </div>
 
 
