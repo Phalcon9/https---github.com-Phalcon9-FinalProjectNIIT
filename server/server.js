@@ -4,9 +4,12 @@ require('dotenv').config()
 //Express application
 const express = require('express')
 const mongoose = require('mongoose')
+//routes
 const productsRoutes = require('./routes/products')
 const categoryRoutes = require('./routes/category')
 const subCategoryRoutes = require("./routes/subCategory")
+const genderRoutes = require("./routes/gender")
+
 const cors = require('cors')
 
 //express app
@@ -25,7 +28,9 @@ app.use((req, res, next) => {
 //route 
 app.use('/api/products', productsRoutes)                                
 app.use('/api/category', categoryRoutes)    
-app.use('/api/subCategory', subCategoryRoutes)   
+app.use('/api/subCategory', subCategoryRoutes)  
+app.use('/api/gender', genderRoutes)
+
 //connect to DB 
 mongoose.connect(process.env.MONG_URI)
     .then(() => {

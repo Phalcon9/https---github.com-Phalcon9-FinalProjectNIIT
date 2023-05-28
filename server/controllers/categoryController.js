@@ -25,18 +25,18 @@ const getCategory = async (req, res) => {
     res.status(200).json(category)  
 }
 
-const getSubCategoryByCategory = (req, res) => {
-    SubCategory.find({ category: req.params.id }).populate('product')
-      .then(subCategory => {
-        res.status(200).json(subCategory);
-      })
-      .catch(err => { 
-        console.log(err);
-        res.status(500).json({
-          error: err
-        });
-      });
-  };
+// const getSubCategoryByCategory = (req, res) => {
+//     SubCategory.find({ category: req.params.id })
+//       .then(subCategory => {
+//         res.status(200).json(subCategory);
+//       })
+//       .catch(err => { 
+//         console.log(err);
+//         res.status(500).json({
+//           error: err
+//         });
+//       });
+//   };
 
 const updateCategory = async (req, res) => {
     const { id } = req.params
@@ -85,4 +85,11 @@ const addCategory = async (req, res) =>{
     }
 }
 
-module.exports = {addCategory, allCategory, updateCategory, updateCategoryWithProducts, getCategory,getSubCategoryByCategory}
+module.exports = {
+    addCategory,
+    allCategory, 
+    updateCategory, 
+    updateCategoryWithProducts, 
+    getCategory,
+    // getSubCategoryByCategory
+}

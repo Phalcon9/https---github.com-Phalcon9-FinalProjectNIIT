@@ -8,6 +8,9 @@ import Slider from "react-slick";
 
 
 const Men = () => {
+    function name (){
+        
+    }
     const settings = {
         dot: true,
     

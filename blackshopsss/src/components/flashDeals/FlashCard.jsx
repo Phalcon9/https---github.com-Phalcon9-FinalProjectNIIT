@@ -3,40 +3,38 @@ import Slider from "react-slick";
 import CartContext from "../../context/CartContext";
 // import Data from "../Data";
 
-const NextArrow = (props) => {
+// const NextArrow = (props) => {
 
-    const { onClick } = props
-    return (
-        <div className="control-btn" onClick={onClick}>
-            <button className="next">
-                <i className="fa fa-long-arrow-alt-right"></i>
-            </button>
-        </div>
-    )
-}
+//     const { onClick } = props
+//     return (
+//         <div className="control-btn" onClick={onClick}>
+//             <button className="next">
+//                 <i className="fa fa-long-arrow-alt-right"></i>
+//             </button>
+//         </div>
+//     )
+// }
 
-// const url = "http://localhost:4000/api/products/"
-const PrevArrow = (props) => {
-    const { onClick } = props
-    return (
-        <div className="control-btn" onClick={onClick}>
-            <button className="prev">
-                <i className="fa fa-long-arrow-alt-left"></i>
-            </button>
-        </div>
-    )
-}
+// // const url = "http://localhost:4000/api/products/"
+// const PrevArrow = (props) => {
+//     const { onClick } = props
+//     return (
+//         <div className="control-btn" onClick={onClick}>
+//             <button className="prev">
+//                 <i className="fa fa-long-arrow-alt-left"></i>
+//             </button>
+//         </div>
+//     )
+// }
 
-const FlashCard = () => {
-    // const { productItems } = Data;
-    const {  products } = useContext(CartContext)
+const FlashCard = ({products}) => {
+  
     return (
         <>
 
 
-            <section className="w-[80vw]  h-[65%] mx-auto grid lg:grid-cols-3 md:grid-cols-2 justify-self-stretch max-sm:grid-cols-2 max-md:grid-cols-2 sm:grid-cols-2 gap-x-[12px] gap-y-[5px] ">
+            <section className="w-[80vw]  h-[65%] mx-auto grid  justify-self-stretch grid-cols-30  gap-[1rem]">
                 {products && products.map((product) => (
-
                     <div className="w-[100%] h-[100%] justify-self-auto" key={product._id}>
                         <div className="">
                             <div className="bg-[#f6f6f6] h-[0%]  ">
@@ -44,25 +42,9 @@ const FlashCard = () => {
                             </div>
                             <div className="ml-[10px]">
                                 <h6>{product.name}</h6>
-                                {/* <h6>{product.subCategory}</h6> */}
+                             
                                 <h6>${product.price}</h6>
                             </div>
-                            {/* <span className="">{product.discount}% Off</span> */}
-                            {/* <div className="">
-                            <h3>{product.name}</h3>
-                            <div className="">
-                                {
-                                    product.category &&(
-                                        <div>{product.category.productCategory}</div>
-                                    )
-                                }
-                                <button className=""
-                                    onClick={() => addToCart(product)}
-                                >      
-                                    <i className="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div> */}
                         </div>
                     </div>
                 ))

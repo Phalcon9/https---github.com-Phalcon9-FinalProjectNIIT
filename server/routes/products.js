@@ -5,7 +5,9 @@ const {
     getProduct,
     allProducts,
     deleteProduct,
-    updateProduct
+    updateProduct,
+    getProductsByCategory,
+    getProductByGenderAndCategory
 } = require("../controllers/productController")
 const cors = require('cors')
 
@@ -16,6 +18,14 @@ const router = express.Router()
 //get all products
 router.get('/', allProducts)
  
+//get products by category
+
+router.get('/:id/productCategory', getProductsByCategory)
+
+//get product by gender
+
+router.get('/productGender', getProductByGenderAndCategory)
+
 //get single product
 router.get('/:id',getProduct)
   

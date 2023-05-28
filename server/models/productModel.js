@@ -2,8 +2,6 @@ const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
-
-
 const productSchema = new Schema({
 
     name: {
@@ -33,6 +31,11 @@ const productSchema = new Schema({
     {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'SubCategory',
+        required: true
+    },
+    gender:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Gender',
         required: true
     },
     discription:{

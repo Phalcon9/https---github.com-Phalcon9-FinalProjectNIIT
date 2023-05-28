@@ -12,7 +12,7 @@ const addSubCategory = async (req, res) => {
     console.log(req.body);
      const { innerCategory, category } = req.body
     try {
-        const subCategory= await SubCategory.create({innerCategory, category})
+        const subCategory = await SubCategory.create({innerCategory, category})
         subCategory.save().then((subCategory)=>{
             Category.findByIdAndUpdate(category, {
                 $push: { subCategory : subCategory }
@@ -24,6 +24,18 @@ const addSubCategory = async (req, res) => {
     }
 
 } 
+const getSubCategoryByCategory = (req, res) => {
+    SubCategory.find({ category: req.params.id })
+      .then(subCategory => {
+        res.status(200).json(subCategory);
+      })
+      .catch(err => { 
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  };
 
 const getProductsByCategory = async (req, res) => {
   const { id } = req.params
@@ -51,4 +63,10 @@ res.status(200).json(subcategory)
     //   }); 
    
   };
-module.exports = {allSubCategory, addSubCategory, getProductsByCategory} 
+module.exports = 
+{
+    allSubCategory, 
+    addSubCategory, 
+    getProductsByCategory,
+    getSubCategoryByCategory
+} 

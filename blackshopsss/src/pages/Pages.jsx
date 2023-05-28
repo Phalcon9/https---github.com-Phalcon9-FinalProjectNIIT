@@ -1,19 +1,13 @@
-import FlashDeals from "../components/flashDeals/FlashDeal";
+import FlashCard from "../components/flashDeals/FlashCard";
 import Footer from "../components/footer/Footer";
-
 import SideNav from "../components/sideNav/SideNav";
-
+import Home from "../landingPage/Home";
 
 const Pages = () => {
     return (
         <>
-            {/* <Home /> */}
-            <div className="flex flex-row">
-                <SideNav className="basis-4" />
-                <FlashDeals />
-            </div>
+            <Home/>
             <Footer />
-
         </>
     );
 }
