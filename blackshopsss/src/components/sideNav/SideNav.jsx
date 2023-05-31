@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 const SideNav = ({ handleCategoryChange, handleGenderChange, onFilter, selectedCategories, selectedGenders, handleCategoryClick }) => {
     const [genders, setGender] = useState([])
     const [categories, setCategory] = useState([])
+    const [MobileMenu, setMobileMenu] = useState(false)
 
     useEffect(() => {
         const getCategory = async () => {
@@ -34,43 +35,48 @@ const SideNav = ({ handleCategoryChange, handleGenderChange, onFilter, selectedC
     };
 
     return (<>
-        <div className=" w-[20%]  basis-1/4 pl-[30px] mt-[30px] overflow-y-auto h-[500px]" onLoad={handleFilter}>
-            <hr className="w-[90%] bg-black" />
-
-            <div>
+        <div className="relative">
+            <button className=" absolute right-[500px] top-0  bg-orange-700 " onClick={() => setMobileMenu(!MobileMenu)}>
                 {
-                    categories && categories.map(category => (
-                        <div key={category._id}>
-                            <button
-                                key={category._id}
-                                onClick={() => handleCategoryClick(category._id)}
-                                className={`category-button ${selectedCategories.includes(category._id) ? 'selected underline underline-offset-1' : ''}`}
-                            >
-                                {category.innerCategory}
-                            </button>
-                            {/* <button value={category._id} >{category.productCategory}</button> */}
-                            {/* <label >
-                                <input type="checkbox" value={category._id} onChange={handleCategoryChange} checked={selectedCategories.includes(category._id)} />
-                                {category.innerCategory}
-                            </label> */}
-
-                        </div>
-                    ))
+                    MobileMenu ?
+                        <i className="fas fa-times close home-bth"></i> :
+                        <i className="fa fa-bars open"></i>
                 }
+            </button>
+        </div>
+        <div className=" side flex-none basis-1/5 pl-[30px] mt-[30px]   overflow-y-auto h-[100vh]" onLoad={handleFilter}>
+
+
+            <div className={MobileMenu ? "nav-links-MobileMenu" : " f_flex capitalize  "} onClick={() => setMobileMenu()}>
+                <hr className="w-[90%] bg-black my-[20px]" />
+                <div className="">
+                    {
+                        categories && categories.map(category => (
+                            <div key={category._id} className="my-[5px]">
+                                <button
+                                    key={category._id}
+                                    onClick={() => handleCategoryClick(category._id)}
+                                    className={`category-button ${selectedCategories.includes(category._id) ? 'selected underline underline-offset-1' : ''}`}
+                                >
+                                    {category.innerCategory}
+                                </button>
+                            </div>
+                        ))
+                    }
+                </div>
+                <hr className="w-[90%] bg-black my-[20px]" />
+                <div>
+                    {
+                        genders && genders.map(gender => (
+                            <label className="block my-[5px]" key={gender._id}>
+                                <input type="checkbox" value={gender._id} onChange={handleGenderChange} checked={selectedGenders.includes(gender._id)} />
+                                {gender.gender}
+                            </label>
+                        ))
+                    }
+                </div>
             </div>
 
-            <hr className="w-[90%] bg-black" />
-
-            <div>
-                {
-                    genders && genders.map(gender => (
-                        <label className="block" key={gender._id}>
-                            <input type="checkbox" value={gender._id} onChange={handleGenderChange} checked={selectedGenders.includes(gender._id)} />
-                            {gender.gender}
-                        </label>
-                    ))
-                }
-            </div>
         </div>
     </>);
 }

@@ -1,16 +1,21 @@
 import { useState } from "react";
 import { Link } from "react-router-dom"
 
+
 const Navbar = () => {
 
     const [MobileMenu, setMobileMenu] = useState(false)
 
     return (
         <>
-            <header className="bg-gray-200 h-[200px] w-[100%] "> aaa
+            <header className="bg-gray-200 w-[100%] mb-[20px] relative ">
+                <img src={process.env.PUBLIC_URL + "images/flash/logo.png"} className="h-[20px] w-[60px]  absolute inset-0 top-4 left-[40px]  z-40 " alt="" />
+
                 <div className="">
-                    <div className="relative top-[70px] my-auto">
-                        <div className="navlink bg-gray-50 h-[50px] pt-[4px]">
+
+                    <div className="relative ">
+
+                        <div className="navlink bg-white py-3   ">
                             <button className="toggle" onClick={() => setMobileMenu(!MobileMenu)}>
                                 {
                                     MobileMenu ?
@@ -18,21 +23,37 @@ const Navbar = () => {
                                         <i className="fa fa-bars open"></i>
                                 }
                             </button>
-                            <ul className={MobileMenu ? "nav-links-MobileMenu" : "link f_flex capitalize  "} onClick={() => setMobileMenu()}>
-                                <span>
-                                    <li className="inline">
-                                        <Link to='/'>home</Link>
-                                    </li>
-                                    <li className="inline">
-                                        <Link to='/shop'>Shop</Link>
-                                    </li>
-                                    <li className="inline">
-                                        <Link to='/contact'>contact</Link>
-                                    </li>
-                                </span>
-                            </ul>
-                        </div>
+                            <div className=" text-center relative">
+                                <ul className={MobileMenu ? "nav-links-MobileMenu" : "link f_flex capitalize  "} onClick={() => setMobileMenu()}>
 
+
+                                    <li className="inline px-[20px]">
+                                        <Link to='/'>New & Featured</Link>
+                                    </li>
+                                    <li className="inline px-[20px]">
+                                        <Link to='/shop'>Men</Link>
+                                    </li>
+                                    <li className="inline px-[20px]">
+                                        <Link to='/contact'>Women</Link>
+                                    </li>
+                                    <li className="inline px-[20px]">
+                                        <Link to='/contact'>Kids</Link>
+                                    </li>
+                                    <li className="inline px-[20px]">
+                                        <Link to='/contact'>Women</Link>
+                                    </li>
+                                    <li className="inline">
+                                        <input type="text" className="rounded-full bg-slate-200" />
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div className="text-center h-10 py-2">
+                            <span>Shop all new Arrivals</span>
+                            
+                        </div>
 
 
                     </div>

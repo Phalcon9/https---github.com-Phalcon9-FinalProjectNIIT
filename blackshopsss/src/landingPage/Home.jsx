@@ -69,7 +69,7 @@ const Home = () => {
 
   return (
     <>
-      <section className="flex gap-6">
+      <section className="flex gap-[10px]">
         <SideNav className=""
           onFilter={handleFilterProducts}
           handleGenderChange={handleGenderChange}
@@ -77,7 +77,7 @@ const Home = () => {
           selectedCategories={selectedCategories}
           handleCategoryClick={handleCategoryClick}
         />
-        <FlashCard products={filteredProducts}
+        <FlashCard className="" products={filteredProducts}
         />
       </section>
     </>

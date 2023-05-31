@@ -193,7 +193,10 @@ header ul li a:hover {
 .toggle{
     display: none;
 }
-@media(max-width: 768px) {
+@media(max-width:920px)  {
+    
+}
+@media(max-width: 959px) {
     .toggle{
         display: contents;
     }
@@ -201,6 +204,7 @@ header ul li a:hover {
         display: none;
         width: 100%;
     }
+        .side {display:none}
     header ul {
         padding-top: 30px;
 
