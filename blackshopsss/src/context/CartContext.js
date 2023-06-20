@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useState} from "react";
+import { createContext, useState } from "react";
 import { useEffect } from "react";
 // import { useQuery } from "react-query";
 
@@ -8,26 +8,43 @@ const CartContext = createContext()
 export function CartProvider({ children }) {
   const [items, setItems] = useState([]);
   const [products, setProducts] = useState([])
-
-    
-   
-    useEffect(() => {
-      const getProduct = async () => {
-        try {
-          const response = await axios.get('http://localhost:4000/api/products/');
-          setProducts(response.data)
-          // console.log('');
-          return response.data
-         
-        } catch (error) {
-          console.error(error);
-        }
-      }
-  
-      getProduct()
-    }, [])
-  
+  const [singles, setSingle] = useState([])
  
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/api/products/');
+        setProducts(response.data)
+        // console.log('');
+        return response.data
+
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    getProduct()
+  }, [])
+
+
+  // useEffect(() => {
+  //   const getProduct = async () => {
+  //     try {
+  //       const response = await axios.get('http://localhost:4000/api/products/');
+  //       setProducts(response.data)
+  //       // console.log('');
+  //       return response.data
+
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+
+  //   getProduct()
+  // }, [])
+
+
   const decreaseQty = (product, shopItems) => {
     const productExist = items.find((item) => item._id === product._id);
     if (productExist) {
@@ -43,15 +60,22 @@ export function CartProvider({ children }) {
 
   const addToCart = (product) => {
     const productExist = items.find((item) => item._id === product._id);
+
     if (productExist) {
       setItems((prevState) => prevState.map((item) => (item._id === product._id ? { ...item, qty: item.qty + 1 } : item)));
-    } else {
+    }
+    else {
       setItems((prevState) => [...prevState, { ...product, qty: 1 }]);
     }
   };
 
+  const singleItem = (product) => {
+    singles.find((item) => item._id === product._id);
+
+    setSingle((prevState) => [{ ...product, qty: 1 }]);
+  }
   return (
-    <CartContext.Provider value={{ items, addToCart, decreaseQty, products }}>
+    <CartContext.Provider value={{ items, addToCart, decreaseQty, products, singleItem, singles }}>
       {children}
     </CartContext.Provider>
   )

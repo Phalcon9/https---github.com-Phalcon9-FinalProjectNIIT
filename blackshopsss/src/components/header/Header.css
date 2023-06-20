@@ -200,10 +200,10 @@ header ul li a:hover {
     .toggle{
         display: contents;
     }
-    .head{
+    /* .head{
         display: none;
         width: 100%;
-    }
+    } */
         .side {display:none}
     header ul {
         padding-top: 30px;

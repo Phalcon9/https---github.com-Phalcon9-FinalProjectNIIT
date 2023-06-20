@@ -10,6 +10,8 @@ import { CartProvider } from './context/CartContext';
 import Cart from './pages/cart/Cart';
 import Shopping from './pages/shopping/Shopping';
 import Men from './pages/men/Men';
+import SingleCard from './components/flashDeals/SingleCard';
+import FilterContext from './context/FilterContext';
 
 
 function App() {
@@ -19,7 +21,9 @@ function App() {
 
   return (
     <>
-    
+      {/* <FilterContext>
+        
+      </FilterContext> */}
       <CartProvider>
         <Router>
           <Header />
@@ -36,6 +40,7 @@ function App() {
               { <Cart />}>
             </Route>
             <Route path='/men' exact element={<Men/>}></Route>
+            <Route path='/single' exact element={<SingleCard/>}></Route>
           </Routes>
         </Router>
       </CartProvider>

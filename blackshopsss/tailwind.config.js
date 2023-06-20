@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         // Simple 16 column grid
-        '30': 'repeat(auto-fit, minmax(300px, 1fr))',
+        '30': 'repeat(auto-fit, minmax(0, calc(33.33% - 20px)))',
 
         // Complex site-specific column configuration
         'footer': '200px minmax(900px, 1fr) 100px',

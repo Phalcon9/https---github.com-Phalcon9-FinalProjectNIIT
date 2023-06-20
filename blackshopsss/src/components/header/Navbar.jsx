@@ -40,7 +40,7 @@ const Navbar = () => {
                                         <Link to='/contact'>Kids</Link>
                                     </li>
                                     <li className="inline px-[20px]">
-                                        <Link to='/contact'>Women</Link>
+                                        <Link to='/cart'>Cart</Link>
                                     </li>
                                     <li className="inline">
                                         <input type="text" className="rounded-full bg-slate-200" />

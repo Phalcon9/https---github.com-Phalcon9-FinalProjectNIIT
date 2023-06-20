@@ -10,7 +10,8 @@ const Home = () => {
   const [selectedGenders, setSelectedGenders] = useState('');
   const [selectedCategories, setSelectedCategories] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
-
+  const [hideNav, setHideNav] = useState(false)
+  
   useEffect(() => {
     handleFilterProducts(selectedGenders, selectedCategories);
   }, [selectedGenders, selectedCategories]);
@@ -69,7 +70,11 @@ const Home = () => {
 
   return (
     <>
+      <button onClick={()=> setHideNav(!hideNav)}> 
+                {hideNav ? <span>show</span>: <span>hide</span>}
+            </button>
       <section className="flex gap-[10px]">
+        <div  className={hideNav ? 'hidden': 'contents'}>
         <SideNav className=""
           onFilter={handleFilterProducts}
           handleGenderChange={handleGenderChange}
@@ -77,8 +82,13 @@ const Home = () => {
           selectedCategories={selectedCategories}
           handleCategoryClick={handleCategoryClick}
         />
-        <FlashCard className="" products={filteredProducts}
+        </div>
+      
+        
+        <FlashCard className="" products={filteredProducts} 
         />
+        
+        
       </section>
     </>
   );

@@ -14,7 +14,9 @@ const Shopping = () => {
                             <div className="product mtop box-item">
                                 <div className="img">
                                     <span className="discount">{product.discount}% Off</span>
-                                    <img src={product.cover} alt="" />
+                                    {/* <img src={product.cover} alt="" /> */}
+                                    <img className="object-contain h-[361px] block mx-auto w-[361px]" src={`http://localhost:4000/${product.cover}`} alt="" />
+
                                 </div>
                                 <div className="product-details">
                                     <h3>{product.name}</h3>
