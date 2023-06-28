@@ -9,7 +9,9 @@ const Navbar = () => {
     return (
         <>
             <header className="bg-gray-200 w-[100%] mb-[20px] relative ">
-                <img src={process.env.PUBLIC_URL + "images/flash/logo.png"} className="h-[20px] w-[60px]  absolute inset-0 top-4 left-[40px]  z-40 " alt="" />
+                <Link to="/">
+                    <img src={process.env.PUBLIC_URL + "images/flash/logo.png"} className="h-[20px] w-[60px]  absolute inset-0 top-4 left-[40px]  z-40 " alt="" />
+                </Link>
 
                 <div className="">
 
@@ -28,16 +30,16 @@ const Navbar = () => {
 
 
                                     <li className="inline px-[20px]">
-                                        <Link to='/'>New & Featured</Link>
+                                        <Link to='/products'>New & Featured</Link>
                                     </li>
                                     <li className="inline px-[20px]">
-                                        <Link to='/shop'>Men</Link>
+                                        <Link to='/products'>Men</Link>
                                     </li>
                                     <li className="inline px-[20px]">
-                                        <Link to='/contact'>Women</Link>
+                                        <Link to='/products'>Women</Link>
                                     </li>
                                     <li className="inline px-[20px]">
-                                        <Link to='/contact'>Kids</Link>
+                                        <Link to='/products'>Kids</Link>
                                     </li>
                                     <li className="inline px-[20px]">
                                         <Link to='/cart'>Cart</Link>
@@ -52,7 +54,7 @@ const Navbar = () => {
                         </div>
                         <div className="text-center h-10 py-2">
                             <span>Shop all new Arrivals</span>
-                            
+
                         </div>
 
 

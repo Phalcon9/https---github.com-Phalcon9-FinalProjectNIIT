@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import CartContext from "../../context/CartContext";
-import "./style.css"
+import { Link } from "react-router-dom";
+
 
 const Cart = () => {
     const {items, addToCart, decreaseQty } = useContext(CartContext)
@@ -8,56 +9,54 @@ const Cart = () => {
    
     return ( 
         <>
-                <section className="cart-items" >
-                    <div className="container d_flex">
-                        <div className="cart-details">
-                            {items.length === 0 && <h1 className="no-items product">No Items are in cart</h1>}
+                <section className="w-[75%] mx-auto" >
+                  
+                        <div className="flex flex-row  tablet:max-desktop:flex-col gap-x-[40px]">
+                            <div className="basis-[60%]">
+                            {items.length === 0 && <h1 className="">No Items are in cart</h1>}
                             {items.map((item) => {
                                 const productQty = item.price * item.qty
                                 return (
-                                    <div className="cart-list product d_flex" key={item.id}>
-                                        <div className="img">
+                                    <div className="relative h-[200px] " key={item.id}>
+                                        <div className="absolute ">
                                             {/* <img src={item.cover}/> */}
-                                            <img src={`http://localhost:4000/${item.cover}`} alt="" />
+                                            <img src={`http://localhost:4000/${item.cover}`} className="h-[120px]" alt="" />
                                         </div>
-                                        <div>
-                                            <h3>{item.name}</h3>
+                                        <div className="">
+                                        <h3>{item.name}</h3>
+                                        </div>
+                                        <div className="absolute left-[150px]">
+                                            
+                                            {/* <h4>{item.subCategory}</h4> */}
                                             <h4>
                                                 {item.price}.00 * {item.qty} <br />
                                                 <span>${productQty}.00</span>
-                                            </h4>
-                                        </div>
-                                        <div className="cart-items-function">
-                                            <div className="removeCart">
-                                                <button>
-                                                    <i className="fa-sharp fa-solid fa-xmark">X</i>   
-                                                 </button>
-                                            </div>
-                                            <div className="cartControl d_flex">
                                                 <button className="incCart" onClick={() => addToCart(item)}>
                                                     <i className=" fa fa-plus"></i>
                                                 </button>
                                                 <button className="desCart" onClick={() => decreaseQty(item)}>
                                                     <i className=" fa fa-minus"></i>
                                                 </button>
-                                            </div>
-                                        </div>
-                                        <div className="cart-item-price">
-
+                                            </h4>
                                         </div>
                                     </div>
 
                                 )
                             } )}
-                            <div className="cart-total product po ">
+                            </div>
+                           
+                            <div className="basis-[40%]  ">
                                 <h2>Cart Summary</h2>
                                 <div className="d_flex">
                                     <h4>Total price: </h4>
                                     <h3>${totalPrice}.00</h3>
                                 </div>
+                                <Link to="/checkout"><button className="w-[100%] block bg-black text-white rounded-full my-2 h-[50px]" >Checkout</button></Link>
+                                
+                       
                             </div>
                         </div>
-                    </div>
+                    
                 </section>
         </>
      );

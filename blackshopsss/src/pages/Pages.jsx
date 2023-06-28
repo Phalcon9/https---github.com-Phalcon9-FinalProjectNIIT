@@ -1,7 +1,5 @@
-import FlashCard from "../components/flashDeals/FlashCard";
 import Footer from "../components/footer/Footer";
-import SideNav from "../components/sideNav/SideNav";
-import Home from "../landingPage/Home";
+import Home from "../landingPage/Products";
 
 const Pages = () => {
     return (

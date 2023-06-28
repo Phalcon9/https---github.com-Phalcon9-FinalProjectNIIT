@@ -14,6 +14,16 @@ module.exports = {
       }
 
     },
+    screens: {
+      'tablet': '0px',
+      // => @media (min-width: 640px) { ... }
+
+      'laptop': '640px',
+      // => @media (min-width: 1024px) { ... }
+
+      'desktop': '1024px',
+      // => @media (min-width: 1280px) { ... }
+    },
     letterSpacing: {
       tightest: '-.075em',
       tighter: '-.05em',
