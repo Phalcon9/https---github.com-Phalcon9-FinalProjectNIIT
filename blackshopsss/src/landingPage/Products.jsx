@@ -4,19 +4,20 @@ import FlashCard from "../components/flashDeals/FlashCard";
 import SideNav from "../components/sideNav/SideNav";
 
 import axios from "axios";
+import SinglePage from "../components/flashDeals/SinglePage";
 
 const Home = () => {
- 
+
   const [selectedGenders, setSelectedGenders] = useState('');
   const [selectedCategories, setSelectedCategories] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [hideNav, setHideNav] = useState(false)
-  
+
   useEffect(() => {
     handleFilterProducts(selectedGenders, selectedCategories);
   }, [selectedGenders, selectedCategories]);
 
-  const handleFilterProducts = ( selectedGenders ,selectedCategories) => {
+  const handleFilterProducts = (selectedGenders, selectedCategories) => {
     axios.get('http://localhost:4000/api/products/productGender/'
       , {
         params: {
@@ -46,7 +47,7 @@ const Home = () => {
         updatedSelectedGenders = prevSelectedGenders.filter((id) => id !== genderId);
       }
 
-      handleFilterProducts( selectedCategories,updatedSelectedGenders);
+      handleFilterProducts(selectedCategories, updatedSelectedGenders);
       return updatedSelectedGenders;
     });
   };
@@ -60,7 +61,7 @@ const Home = () => {
       if (isSelected) {
         return prevSelectedCategories;
       }
-  
+
       const updatedSelectedCategories = [...prevSelectedCategories, categoryId];
 
       handleFilterProducts([categoryId], selectedGenders)
@@ -70,25 +71,26 @@ const Home = () => {
 
   return (
     <>
-      <button onClick={()=> setHideNav(!hideNav)}> 
-                {hideNav ? <span>show</span>: <span>hide</span>}
-            </button>
+      <button onClick={() => setHideNav(!hideNav)}>
+        {hideNav ? <span>show</span> : <span>hide</span>}
+      </button>
       <section className="flex gap-[10px]">
-        <div  className={hideNav ? 'hidden': 'contents'}>
-        <SideNav className=""
-          onFilter={handleFilterProducts}
-          handleGenderChange={handleGenderChange}
-          selectedGenders={selectedGenders}
-          selectedCategories={selectedCategories}
-          handleCategoryClick={handleCategoryClick}
-        />
+        <div className={hideNav ? 'hidden' : 'contents'}>
+          <SideNav className=""
+            onFilter={handleFilterProducts}
+            handleGenderChange={handleGenderChange}
+            selectedGenders={selectedGenders}
+            selectedCategories={selectedCategories}
+            handleCategoryClick={handleCategoryClick}
+          />
         </div>
-      
-        
-        <FlashCard className="" products={filteredProducts} 
+
+
+        <SinglePage className="" 
+        // products={filteredProducts}
         />
-        
-        
+
+
       </section>
     </>
   );

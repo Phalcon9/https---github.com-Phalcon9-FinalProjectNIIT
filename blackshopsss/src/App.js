@@ -18,6 +18,7 @@ import LandingPage from './pages/LandingPage';
 import Footer from './components/footer/Footer';
 
 
+
 function App() {
   // const { productItems } = Data;
 

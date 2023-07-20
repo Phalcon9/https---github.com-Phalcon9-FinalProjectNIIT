@@ -17,8 +17,11 @@ module.exports = {
     screens: {
       'tablet': '0px',
       // => @media (min-width: 640px) { ... }
-
+      'tab0':'300px',
+      'tab1': '600px',
       'laptop': '640px',
+
+      
       // => @media (min-width: 1024px) { ... }
 
       'desktop': '1024px',
@@ -32,6 +35,12 @@ module.exports = {
       wide: '.025em',
       wider: '.05em',
       widest: '.25em',
+    }, 
+    backgroundImage: {
+      'hero-pattern': "url('/nike-just-do-it-2.jpg')",
+      'small-hero': "url('/nike-just-do-it.jpg')",
+      'member': "url('/nike-jus.png')",
+      'member-small': "url('/nike-just-do-it.png')",
     }
   },
   plugins: [],

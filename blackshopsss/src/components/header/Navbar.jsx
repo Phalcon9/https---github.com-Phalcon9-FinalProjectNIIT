@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 
 
 const Navbar = () => {
-
+    const items = useSelector(state => state.cart)
     const [MobileMenu, setMobileMenu] = useState(false)
+    const totalItems = items.reduce((count,item)=> count+ item.qty, 0 )
 
     return (
         <>
-            <header className="bg-gray-200 w-[100%] mb-[20px] relative ">
+            <header className="bg-gray-200 w-[100%]  mb-[20px] relative ">
                 <Link to="/">
                     <img src={process.env.PUBLIC_URL + "images/flash/logo.png"} className="h-[20px] w-[60px]  absolute inset-0 top-4 left-[40px]  z-40 " alt="" />
                 </Link>
@@ -42,7 +44,7 @@ const Navbar = () => {
                                         <Link to='/products'>Kids</Link>
                                     </li>
                                     <li className="inline px-[20px]">
-                                        <Link to='/cart'>Cart</Link>
+                                        <Link to='/cart'>Cart {totalItems}</Link>
                                     </li>
                                     <li className="inline">
                                         <input type="text" className="rounded-full bg-slate-200" />
